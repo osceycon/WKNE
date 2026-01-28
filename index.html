@@ -1,8 +1,27 @@
+<!DOCTYPE html>
 <html>
   <body>
     welcome to kinetra radio, this page doesn't have anything except for list of songs
-    <br>
-    [list here]
+
+    <ul id="song-list"></ul>
+
+    <script>
+      fetch("songs.json")
+        .then(res => res.json())
+        .then(songs => {
+          const list = document.getElementById("song-list")
+    
+          songs.forEach(song => {
+            const li = document.createElement("li")
+            const audio = document.createElement("audio")
+            audio.controls = true
+            audio.src = song
+    
+            li.textContent = song + " "
+            li.appendChild(audio)
+            list.appendChild(li)
+          })
+        })
+    </script>
   </body>
-  
 </html>
